@@ -19,31 +19,41 @@ namespace cloud_apis_api.Controllers
         }
 
         [HttpGet]
-        public List<Game> GetGames(string title = "", string publisher = "")
+        public IActionResult GetGames(string title = "", string publisher = "", string sort = "", int page = 0, int pagesize = 5)
         {
             IQueryable<Game> query = context.Games;
 
+            query = query.Include(d => d.Publisher);
+
             if (!string.IsNullOrEmpty(title))
+                query = query.Where(d => d.Title.Contains(title));
+
+            if (!string.IsNullOrEmpty(publisher))
+                query = query.Where(d => d.Publisher.PublisherName.Contains(publisher));
+
+            if (!string.IsNullOrEmpty(sort))
             {
-                if (!string.IsNullOrEmpty(publisher))
+                switch (sort)
                 {
-                    query = query.Include(d => d.Publisher).Where(d => d.Title.Contains(title)).Where(d => d.Publisher.PublisherName.Contains(publisher));
+                    case "id":
+                        query = query.OrderBy(d => d.Id);
+                        break;
+                    case "publisher":
+                        query = query.OrderBy(d => d.Publisher.PublisherName);
+                        break;
+                    default:
+                    case "title":
+                        query = query.OrderBy(d => d.Title);
+                        break;
                 }
-                else
-                {
-                    query = query.Include(d => d.Publisher).Where(d => d.Title.Contains(title));
-                }
-            }
-            else if (!string.IsNullOrEmpty(publisher))
-            {
-                query = query.Include(d => d.Publisher).Where(d => d.Publisher.PublisherName.Contains(publisher));
-            }
-            else
-            {
-                query = query.Include(d => d.Publisher);
             }
 
-            return query.ToList();
+            query = query.Skip(pagesize * page).Take(pagesize);
+
+            if (query.ToList().Count == 0)
+                return NotFound();
+
+            return Ok(query.ToList());
         }
 
         // GET api/values/5

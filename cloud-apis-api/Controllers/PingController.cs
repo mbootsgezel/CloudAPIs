@@ -14,7 +14,7 @@ namespace cloud_apis_api.Controllers
         [HttpGet]
         public string Get()
         {
-            return "boobs";
+            return "Ping";
         }
     }
 }
