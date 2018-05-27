@@ -70,8 +70,21 @@ namespace cloud_apis_api.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult AddGame([FromBody]Game newGame)
         {
+            Console.WriteLine(newGame);
+            var publisher = context.Publishers.Find(newGame.Publisher);
+            if (publisher == null)
+                return NotFound();
+
+            newGame.Publisher = publisher;
+
+            Console.WriteLine(newGame);
+            
+            context.Games.Add(newGame);
+            context.SaveChanges();
+
+            return Created("", newGame);
         }
 
         // PUT api/values/5
