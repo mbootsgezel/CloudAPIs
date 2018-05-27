@@ -1,0 +1,27 @@
+<ion-card *ngIf='movie'>
+    <ion-item class="movie-header">
+        <ion-row>
+            <ion-col>
+                <h1>{{ movie.Title }}</h1>
+                <p>{{ movie.Released }}</p>
+                <h2>{{ movie.Genre }}</h2>
+            </ion-col>
+            <ion-col id="score" text-right>
+                <ion-icon name="star"></ion-icon>
+                <strong>
+                    <span>{{ movie.imdbRating }}</span>
+                </strong>
+                <span>/</span>
+                <span>10</span>
+            </ion-col>
+        </ion-row>
+    </ion-item>
+    <ion-item class="movie-poster">
+        <img src='{{ movie.Poster }}' />
+    </ion-item>
+    <ion-item class="movie-plot">
+        <p>{{ movie.Plot }}</p>
+    </ion-item>
+
+
+</ion-card>

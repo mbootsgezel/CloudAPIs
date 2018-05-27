@@ -1,0 +1,27 @@
+movie-card {
+
+}
+
+.card {
+      width: 30%;
+      margin-left: 35%;
+}
+
+#score ion-icon {
+    font-size: 2.4em;
+    color: rgb(224, 174, 28) !important;
+}
+#score strong span {
+    font-size: 1.8em;
+}
+
+.movie-genre div div ion-label p {
+    font-size: 1.4em;
+}
+
+.movie-plot div div ion-label {
+    white-space: normal !important;
+}
+.movie-plot div div ion-label p {
+    font-size: 1em;
+}

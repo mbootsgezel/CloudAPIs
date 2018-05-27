@@ -1,0 +1,11 @@
+/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/bin/Debug/netcoreapp2.0/cloud-apis-api.deps.json
+/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/bin/Debug/netcoreapp2.0/cloud-apis-api.runtimeconfig.json
+/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/bin/Debug/netcoreapp2.0/cloud-apis-api.runtimeconfig.dev.json
+/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/bin/Debug/netcoreapp2.0/cloud-apis-api.dll
+/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/bin/Debug/netcoreapp2.0/cloud-apis-api.pdb
+/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/obj/Debug/netcoreapp2.0/cloud-apis-api.csprojResolveAssemblyReference.cache
+/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/obj/Debug/netcoreapp2.0/cloud-apis-api.csproj.CoreCompileInputs.cache
+/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/obj/Debug/netcoreapp2.0/cloud-apis-api.AssemblyInfoInputs.cache
+/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/obj/Debug/netcoreapp2.0/cloud-apis-api.AssemblyInfo.cs
+/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/obj/Debug/netcoreapp2.0/cloud-apis-api.dll
+/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/obj/Debug/netcoreapp2.0/cloud-apis-api.pdb
