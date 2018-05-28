@@ -80,33 +80,67 @@ namespace cloud_apis_api.Controllers
 
             if (publisher == null)
                 return NotFound();
-                
+
             return Ok(publisher);
         }
 
 
         // POST api/values
         [HttpPost]
-        public IActionResult AddGame([FromBody]Game newGame)
+        public IActionResult AddGame([FromBody]GameDto newGame)
         {
+            var publisher = context.Publishers.Find(newGame.PublisherId);
 
-            context.Games.Add(newGame);
+
+            if (publisher == null)
+                return NotFound();
+
+            var game = new Game {
+                Title = newGame.Title,
+                Publisher = publisher
+            };
+
+            context.Games.Add(game);
             context.SaveChanges();
 
-            return Created("", newGame);
+            return Created("", game);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]GameDto updatedGame)
         {
-            Console.WriteLine(value);
+            var game = context.Games.Find(id);
+            var publisher = context.Publishers.Find(updatedGame.PublisherId);
+
+            if (game == null)
+                return NotFound();
+
+            game.Publisher = publisher;
+            game.Title = updatedGame.Title;
+
+            context.Games.Update(game);
+            context.SaveChanges();
+
+            return Ok(game);
+            
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var game = context.Games.Find(id);
+
+            if (game == null)
+                return NotFound();
+
+            context.Games.Remove(game);
+            context.SaveChanges();
+
+            return Ok(game);
+
+            // return 
         }
     }
 }
