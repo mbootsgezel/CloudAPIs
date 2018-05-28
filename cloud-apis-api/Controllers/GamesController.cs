@@ -68,19 +68,28 @@ namespace cloud_apis_api.Controllers
             return Ok(game);
         }
 
+        [HttpGet("{id}/publisher")]
+        public IActionResult GetGamePublisher(int id)
+        {
+            var game = context.Games.Include(d => d.Publisher).SingleOrDefault(d => d.Id == id);
+            
+            if (game == null)
+                return NotFound();
+
+            var publisher = context.Publishers.Where(d => d.PublisherName.Contains(game.Publisher.PublisherName));
+
+            if (publisher == null)
+                return NotFound();
+                
+            return Ok(publisher);
+        }
+
+
         // POST api/values
         [HttpPost]
         public IActionResult AddGame([FromBody]Game newGame)
         {
-            Console.WriteLine(newGame);
-            var publisher = context.Publishers.Find(newGame.Publisher);
-            if (publisher == null)
-                return NotFound();
 
-            newGame.Publisher = publisher;
-
-            Console.WriteLine(newGame);
-            
             context.Games.Add(newGame);
             context.SaveChanges();
 
@@ -91,6 +100,7 @@ namespace cloud_apis_api.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
+            Console.WriteLine(value);
         }
 
         // DELETE api/values/5

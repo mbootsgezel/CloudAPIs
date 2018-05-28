@@ -1,13 +1,15 @@
 ﻿<Properties StartupConfiguration="{60492C3D-E197-466D-9D50-EC8F84222758}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/PublishersController.cs">
     <Files>
-      <File FileName="Controllers/GamesController.cs" Line="1" Column="1" />
-      <File FileName="Controllers/PublishersController.cs" Line="1" Column="1" />
+      <File FileName="Controllers/GamesController.cs" Line="103" Column="2" />
+      <File FileName="Controllers/PublishersController.cs" Line="47" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/Controllers/PublishersController.cs" relfile="Controllers/PublishersController.cs" line="61" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.cloud-apis-api PreferredExecutionTarget="MonoDevelop.Default" />

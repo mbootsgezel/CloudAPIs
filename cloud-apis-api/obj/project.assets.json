@@ -12783,13 +12783,13 @@
       "projectName": "cloud-apis-api",
       "projectPath": "/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/cloud-apis-api.csproj",
       "packagesPath": "/Users/melvinb/.nuget/packages/",
-      "outputPath": "/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/obj",
+      "outputPath": "/Users/melvinb/Documents/Cloud-APIs/cloud-apis-api/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/melvinb/.config/NuGet/NuGet.Config"
+        "/Users/melvinb/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -12811,35 +12811,34 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "Microsoft.NETCore.App": {
-            "suppressParent": "All",
-            "target": "Package",
-            "version": "2.0",
-            "autoReferenced": true
-          },
           "EntityFramework": {
             "target": "Package",
-            "version": "6.2.0"
+            "version": "[6.2.0, )"
           },
           "Microsoft.AspNetCore.All": {
             "target": "Package",
-            "version": "2.0.7"
+            "version": "[2.0.7, )"
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
-            "version": "2.0.4"
+            "version": "[2.0.4, )"
+          },
+          "Microsoft.NETCore.App": {
+            "target": "Package",
+            "version": "[2.0.0, )",
+            "autoReferenced": true
           },
           "MySql.Data.EntityFrameworkCore": {
             "target": "Package",
-            "version": "8.0.11"
+            "version": "[8.0.11, )"
           },
           "System.Net.Http": {
             "target": "Package",
-            "version": "4.3.3"
+            "version": "[4.3.3, )"
           },
           "System.Web.Http": {
             "target": "Package",
-            "version": "4.0.0"
+            "version": "[4.0.0, )"
           }
         },
         "imports": [

@@ -11,5 +11,8 @@ plugins
 *.swo
 *.log
 *.DS_Store
+cloud-apis-api/.vs/
+cloud-apis-api/bin/
+cloud-apis-api/obj/
 
 app/scripts/configuration.js

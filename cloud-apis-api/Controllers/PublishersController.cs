@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace cloud_apis_api
+namespace cloud_apis_api.Controllers
 {
     [Route("api/[controller]")]
     public class PublishersController : BaseController
@@ -37,6 +38,22 @@ namespace cloud_apis_api
 
 
 
+        [HttpGet("{id}")]
+        public IActionResult GetPublisher(int id)
+        {
+            var publisher = context.Publishers.SingleOrDefault(d => d.Id == id);
+
+            if (publisher == null)
+                return NotFound();
+
+            return Ok(publisher);
+
+        }
+
+        // [Route("api/[controller]/gamesbypublisherid")]
+        // [HttpGet("{id}")]
+        
 
     }
 }
+
