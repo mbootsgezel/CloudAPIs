@@ -50,9 +50,49 @@ namespace cloud_apis_api.Controllers
 
         }
 
-        // [Route("api/[controller]/gamesbypublisherid")]
-        // [HttpGet("{id}")]
-        
+        [HttpPost]
+        public IActionResult AddGame([FromBody]PublisherDto newPublisher)
+        {
+            Publisher publisher = new Publisher {
+                PublisherName = newPublisher.PublisherName
+            };
+
+            context.Publishers.Add(publisher);
+            context.SaveChanges();
+
+            return Created("", publisher);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdatePublisher(int id, [FromBody] PublisherDto updatePublisher){
+            Publisher publisher = context.Publishers.Find(id);
+
+            if(publisher == null)
+                return NotFound();
+
+            publisher.PublisherName = updatePublisher.PublisherName;
+            
+            context.Update(publisher);
+            context.SaveChanges();
+
+            return Ok(publisher);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var publisher = context.Publishers.Find(id);
+
+            if (publisher == null)
+                return NotFound();
+
+            context.Publishers.Remove(publisher);
+            context.SaveChanges();
+
+            return Ok(publisher);
+
+        }
+
 
     }
 }
