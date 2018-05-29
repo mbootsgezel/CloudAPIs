@@ -15,20 +15,19 @@ export class MovieComponent {
 
     @Input() movieId: string;
     @Input() movieName: string;
+    @Input() Movie: Movie;
 
     private movie: Movie;
-    private movies: Movie[];
+    public movies: Movie[];
 
     constructor(private omdb: OmdbServiceProvider) {
-        omdb.getMovies().subscribe(data => {
-            this.movie = data;
-        })
+
     }
 
     ngOnInit() {
-        console.log(this.movieId);
-        console.log(this.movieName);
-        if (this.movieId) {
+        if (this.Movie) {
+            this.movie = this.Movie;
+        } else if (this.movieId) {
             this.omdb.getMovieById(this.movieId).subscribe(data => {
                 this.movie = data;
             });

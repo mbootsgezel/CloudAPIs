@@ -8,8 +8,14 @@
 
 <ion-content padding>
     <ion-list>
-        <ion-item >
-            <movie [movieName]="'Deadpool'">
+        <form (ngSubmit)="searchMovie()" [formGroup]="search">
+            <ion-item>
+                <ion-input type="text" formControlName="movieName" placeholder="Search for a movie">
+                </ion-input>
+            </ion-item>
+        </form>
+        <ion-item *ngFor="let m of movies">
+            <movie [Movie]="m">
 
             </movie>
         </ion-item>

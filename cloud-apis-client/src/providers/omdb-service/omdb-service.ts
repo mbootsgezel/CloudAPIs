@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
+import { List } from 'ionic-angular';
 
 /*
   Generated class for the OmdbServiceProvider provider.
@@ -22,18 +23,17 @@ export class OmdbServiceProvider {
     }
 
     getMovieById(movieId: string): Observable<Movie> {
-        console.log("Getting movie by ID: " + movieId);
         return this.http.get<Movie>(this.baseUrl + "&i=" + movieId);
     }
 
     getMovieByName(movieName: string): Observable<Movie> {
-        console.log("Getting movie by name: " + movieName);
         return this.http.get<Movie>(this.baseUrl + "&t=" + movieName.replace(' ', '+'));
     }
-    
-    getMovies():Observable<Movie[]> {
-        return this.http.get<Movie[]>(this.baseUrl + "&y=2018");
+
+    getMoviesByName(movieName: string, page: number): Observable<SearchObject> {
+        return this.http.get<SearchObject>(this.baseUrl + "&s=" + movieName.toString().replace(' ', '+') + "&page=" + page);
     }
+
 }
 
 export interface Rating {
@@ -68,3 +68,18 @@ export interface Movie {
     Website: string;
     Response: string;
 }
+
+export interface Search {
+    Title: string;
+    Year: string;
+    imdbID: string;
+    Type: string;
+    Poster: string;
+}
+
+export interface SearchObject {
+    Search: Movie[];
+    totalResults: string;
+    Response: string;
+}
+
