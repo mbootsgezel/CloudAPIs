@@ -19,8 +19,27 @@
 
             </movie>
         </ion-item>
+
         <ion-item>
-            
+
         </ion-item>
     </ion-list>
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <div *ngIf="resultSize > 10" class="page-numbering">
+            <button ion-button icon-left float-left outline [disabled]="backDisabled" (click)="prevPage()">
+                <ion-icon name="arrow-back"></ion-icon>
+                Prev. page
+            </button>
+            Page {{ page }}
+            <!-- Float the icon right -->
+            <button ion-button icon-right float-right outline [disabled]="nextDisabled" (click)="nextPage()">
+                Next page
+                <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+
+        </div>
+    </ion-toolbar>
+</ion-footer>

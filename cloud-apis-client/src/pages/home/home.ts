@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
 import { OmdbServiceProvider, Movie } from '../../providers/omdb-service/omdb-service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MovieComponent } from '../../components/movie/movie';
+import { MoviePage } from '../movie/movie';
 
 @Component({
     selector: 'page-home',
-    templateUrl: 'home.html'
+    templateUrl: 'home.html',
+})
+@IonicPage({
+    name: 'home'
 })
 export class HomePage {
 
@@ -16,24 +20,43 @@ export class HomePage {
     private resultSize = 0;
     private page = 1;
 
+    private backDisabled = true;
+    private nextDisabled = true;
+
+    public MoviePage: MoviePage;
+
     constructor(public navCtrl: NavController, private omdb: OmdbServiceProvider, private formBuilder: FormBuilder) {
         this.search = this.formBuilder.group({
             movieName: ['']
         })
     }
 
-    ionViewDidLoad() {
-        this.omdb.getFirstMovie().subscribe(data => {
-            console.log(data.Title);
-        });
+    searchMovie() {
+        this.page = 1;
+        this.switchPage();
     }
 
-    searchMovie() {
+    switchPage() {
+
         this.omdb.getMoviesByName(this.search.value.movieName, this.page).subscribe(data => {
             this.movies = data.Search;
             this.resultSize = parseInt(data.totalResults);
-            console.log(this.movies.length);
-            console.log(this.resultSize);
-        })
+
+            this.backDisabled = this.page <= 1 ? true : false;
+            this.nextDisabled = this.page * 10 > this.resultSize ? true : false;
+        }, failed => {
+            console.log(failed);
+        });
+
+    }
+
+    prevPage() {
+        this.page--;
+        this.switchPage();
+    }
+
+    nextPage() {
+        this.page++;
+        this.switchPage();
     }
 }
