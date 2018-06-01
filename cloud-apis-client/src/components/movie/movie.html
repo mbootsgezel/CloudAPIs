@@ -1,7 +1,7 @@
 <ion-card *ngIf='movie'>
     <ion-item class="movie-header">
         <ion-row>
-            <ion-col>
+            <ion-col (click)="openDetailedMovie()">
                 <h1>{{ movie.Title }}</h1>
                 <p>{{ movie.Year }}</p>
                 <h2>{{ movie.Type | titlecase }}</h2>

@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Movie, OmdbServiceProvider } from '../../providers/omdb-service/omdb-service';
+import { NavController } from 'ionic-angular';
+import { HomePage } from '../../pages/home/home';
 
 /**
  * Generated class for the MovieComponent component.
@@ -20,7 +22,9 @@ export class MovieComponent {
     private movie: Movie;
     public movies: Movie[];
 
-    constructor(private omdb: OmdbServiceProvider) {
+    public HomePage: HomePage;
+
+    constructor(private navCtrl: NavController, private omdb: OmdbServiceProvider) {
 
     }
 
@@ -38,6 +42,12 @@ export class MovieComponent {
         } else {
             console.log("No movies found..");
         }
+    }
+    
+    openDetailedMovie() {
+        this.navCtrl.push('movie', {
+            movieId: this.movie.imdbID
+        });
     }
 
 }

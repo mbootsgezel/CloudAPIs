@@ -20,3 +20,19 @@ movie-card {
 .movie-plot div div ion-label p {
     font-size: 1em;
 }
+
+@media (min-width: 640px) { 
+    ion-card {
+        margin-left: 25% !important;
+        margin-right: 25% !important;
+        width: 50% !important;
+    }
+}
+
+@media (min-width: 1280px) {
+    ion-card {
+        margin-left: 35% !important;
+        margin-right: 35% !important;
+        width: 30% !important;
+    }
+}
