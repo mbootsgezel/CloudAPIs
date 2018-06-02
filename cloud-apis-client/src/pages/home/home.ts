@@ -52,6 +52,9 @@ export class HomePage {
                 this.titles = data.Search;
                 this.resultSize = parseInt(data.totalResults);
 
+                let results = document.getElementById('resultsFound');
+                results.innerHTML = this.resultSize + " total results";  
+
                 this.backDisabled = this.page <= 1 ? true : false;
                 this.nextDisabled = this.page * 10 > this.resultSize ? true : false;
 

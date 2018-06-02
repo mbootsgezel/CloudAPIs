@@ -2,6 +2,6 @@ page-movie {
 
 }
 
-.movie-header ion-row ion-col h1 {
-    word-wrap: break-word;
+.movie-plot p {
+    word-break: break-all;
 }

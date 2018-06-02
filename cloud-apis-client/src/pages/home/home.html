@@ -23,14 +23,15 @@
                 </ion-input>
             </ion-item>
         </form>
+        <ion-item padding text-center>
+            <h2 id="resultsFound"></h2>
+        </ion-item>
         <ion-item *ngFor="let t of titles">
             <title-component [Title]="t">
 
             </title-component>
         </ion-item>
-        <ion-item padding text-center>
-            <h2 id="resultsFound"></h2>
-        </ion-item>
+
     </ion-list>
 </ion-content>
 
