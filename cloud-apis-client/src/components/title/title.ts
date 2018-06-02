@@ -44,14 +44,18 @@ export class TitleComponent {
         let type = this.title.Type;
         switch (type) {
             case 'game':
-
+                this.navCtrl.push('game-page', {
+                    gameId: this.title.imdbID
+                });
                 break;
             case 'series':
-
+                this.navCtrl.push('series-page', {
+                    seriesId: this.title.imdbID
+                });
                 break;
             default:
             case 'movie':
-                this.navCtrl.push('movie', {
+                this.navCtrl.push('movie-page', {
                     movieId: this.title.imdbID
                 });
                 break;

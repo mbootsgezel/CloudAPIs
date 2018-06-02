@@ -11,7 +11,7 @@ import { URLSearchParams } from "@angular/http";
  */
 
 @IonicPage({
-    name: 'movie'
+    name: 'movie-page'
 })
 @Component({
     selector: 'page-movie',
@@ -24,16 +24,15 @@ export class MoviePage {
     constructor(public navCtrl: NavController, public navParams: NavParams, private omdb: OmdbServiceProvider) {
         if(this.navParams.get('movieId')){
             var movieId = this.navParams.get('movieId');
-            omdb.getTitleById(movieId).subscribe( data => {
+            omdb.getMovieById(movieId).subscribe( data => {
                 this.movie = data;
                 console.log("Succesfully got movie");
                 console.log(this.movie);
             });
         } else {
-            console.log("No movie supplied.. returning");
+            console.log("No movieId supplied.. returning");
             this.navCtrl.goToRoot(null);
         } 
-    
     }
 
     back (){
