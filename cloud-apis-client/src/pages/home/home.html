@@ -8,20 +8,28 @@
 
 <ion-content padding>
     <ion-list>
-        <form (ngSubmit)="searchMovie()" [formGroup]="search">
+        <form (ngSubmit)="searchTitle()" [formGroup]="search">
             <ion-item>
-                <ion-input type="text" formControlName="movieName" placeholder="Search for a movie">
+                <ion-label>Type</ion-label>
+                <ion-select [(ngModel)]="typeSelect" formControlName="type">
+                    <ion-option value="any">All</ion-option>
+                    <ion-option value="movie">Movie</ion-option>
+                    <ion-option value="series">Series</ion-option>
+                    <ion-option value="game">Game</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" formControlName="titleNameOrId" placeholder="Search for a movie or IMDB-ID">
                 </ion-input>
             </ion-item>
         </form>
-        <ion-item *ngFor="let m of movies">
-            <movie [Movie]="m">
+        <ion-item *ngFor="let t of titles">
+            <title-component [Title]="t">
 
-            </movie>
+            </title-component>
         </ion-item>
-
-        <ion-item>
-
+        <ion-item padding text-center>
+            <h2 id="resultsFound"></h2>
         </ion-item>
     </ion-list>
 </ion-content>

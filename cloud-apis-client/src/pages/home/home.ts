@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
-import { OmdbServiceProvider, Movie } from '../../providers/omdb-service/omdb-service';
+import { OmdbServiceProvider, Movie, Title } from '../../providers/omdb-service/omdb-service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { MovieComponent } from '../../components/movie/movie';
 import { MoviePage } from '../movie/movie';
 
 @Component({
@@ -14,7 +13,7 @@ import { MoviePage } from '../movie/movie';
 })
 export class HomePage {
 
-    private movies: Movie[];
+    private titles: Title[];
     private search: FormGroup;
 
     private resultSize = 0;
@@ -25,28 +24,46 @@ export class HomePage {
 
     public MoviePage: MoviePage;
 
+    private typeSelect: string = "any";
+    private nothingFound = false;
+
     constructor(public navCtrl: NavController, private omdb: OmdbServiceProvider, private formBuilder: FormBuilder) {
         this.search = this.formBuilder.group({
-            movieName: ['']
+            titleNameOrId: [''],
+            type: ['']
         })
     }
 
-    searchMovie() {
+    searchTitle() {
         this.page = 1;
         this.switchPage();
     }
 
     switchPage() {
+        var titleNameOrId: string = this.search.value.titleNameOrId;
+        var type: string = this.search.value.type;
 
-        this.omdb.getMoviesByName(this.search.value.movieName, this.page).subscribe(data => {
-            this.movies = data.Search;
-            this.resultSize = parseInt(data.totalResults);
+        if (titleNameOrId.substr(0, 2) == 'tt') {
+            this.navCtrl.push('movie', {
+                movieId: titleNameOrId
+            });
+        } else {
+            this.omdb.getTitlesByName(titleNameOrId, type, this.page).subscribe(data => {
+                this.titles = data.Search;
+                this.resultSize = parseInt(data.totalResults);
 
-            this.backDisabled = this.page <= 1 ? true : false;
-            this.nextDisabled = this.page * 10 > this.resultSize ? true : false;
-        }, failed => {
-            console.log(failed);
-        });
+                this.backDisabled = this.page <= 1 ? true : false;
+                this.nextDisabled = this.page * 10 > this.resultSize ? true : false;
+
+                this.nothingFound = this.resultSize <= 0 ? true : false;
+            }, failed => {
+                console.log(failed);
+                this.nothingFound = true;
+            });
+        }
+
+
+
 
     }
 

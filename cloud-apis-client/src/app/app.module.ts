@@ -8,13 +8,13 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { OmdbServiceProvider } from '../providers/omdb-service/omdb-service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MovieComponent } from '../components/movie/movie';
+import { TitleComponent } from '../components/title/title';
 
 @NgModule({
       declarations: [
             MyApp,
             HomePage,
-            MovieComponent,
+            TitleComponent
       ],
       imports: [
             BrowserModule,
@@ -25,6 +25,7 @@ import { MovieComponent } from '../components/movie/movie';
       entryComponents: [
             MyApp,
             HomePage,
+            TitleComponent
       ],
       providers: [
             StatusBar,

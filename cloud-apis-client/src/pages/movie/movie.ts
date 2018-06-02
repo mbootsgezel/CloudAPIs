@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Movie, OmdbServiceProvider } from '../../providers/omdb-service/omdb-service';
+import { URLSearchParams } from "@angular/http";
 
 /**
  * Generated class for the MoviePage page.
@@ -23,7 +24,7 @@ export class MoviePage {
     constructor(public navCtrl: NavController, public navParams: NavParams, private omdb: OmdbServiceProvider) {
         if(this.navParams.get('movieId')){
             var movieId = this.navParams.get('movieId');
-            omdb.getMovieById(movieId).subscribe( data => {
+            omdb.getTitleById(movieId).subscribe( data => {
                 this.movie = data;
                 console.log("Succesfully got movie");
                 console.log(this.movie);
@@ -32,8 +33,6 @@ export class MoviePage {
             console.log("No movie supplied.. returning");
             this.navCtrl.goToRoot(null);
         } 
-
-        console.log(this.navParams.get('id'));
     
     }
 

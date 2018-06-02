@@ -36,16 +36,9 @@ ion-item {
     color: white;
 }
 
-@media (min-width: 640px) { 
+@media (min-width: 860px) { 
     ion-list {
         padding-left: 25% !important;
         padding-right: 25% !important;
-    }
-}
-
-@media (min-width: 1280px) {
-    ion-list {
-        padding-left: 40% !important;
-        padding-right: 40% !important;
     }
 }

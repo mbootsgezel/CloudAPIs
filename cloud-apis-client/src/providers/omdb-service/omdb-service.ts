@@ -15,23 +15,30 @@ export class OmdbServiceProvider {
     private baseUrl = "http://www.omdbapi.com/?apikey=202fb065";
 
     constructor(public http: HttpClient) {
-        console.log('Hello OmdbServiceProvider Provider');
     }
 
-    getFirstMovie(): Observable<Movie> {
-        return this.http.get<Movie>(this.baseUrl);
+    getTitleById(titleId: string): Observable<Movie> {
+        console.log("Getting movie with imdbID: " + titleId);
+        let queryString = this.baseUrl;
+        queryString += "&i=" + titleId;
+        return this.http.get<Movie>(queryString);
     }
 
-    getMovieById(movieId: string): Observable<Movie> {
-        return this.http.get<Movie>(this.baseUrl + "&i=" + movieId);
+    getTitleByName(titleName: string): Observable<Movie> {
+        console.log("Getting movie with name: " + titleName);
+        let queryString = this.baseUrl;
+        queryString += "&t=" + titleName.replace(' ', '+');
+        return this.http.get<Movie>(queryString);
     }
 
-    getMovieByName(movieName: string): Observable<Movie> {
-        return this.http.get<Movie>(this.baseUrl + "&t=" + movieName.replace(' ', '+'));
-    }
-
-    getMoviesByName(movieName: string, page: number): Observable<SearchObject> {
-        return this.http.get<SearchObject>(this.baseUrl + "&s=" + movieName.toString().replace(' ', '+') + "&page=" + page);
+    getTitlesByName(titleName: string, type: string, page: number): Observable<SearchObject> {
+        console.log("Getting movies with name: " + titleName);
+        let queryString = this.baseUrl;
+        queryString += "&s=" + titleName.toString().replace(' ', '+');
+        queryString +=  "&page=" + page;
+        queryString += type == "any" ? "" : "&type=" + type;
+        console.log(queryString);
+        return this.http.get<SearchObject>(queryString);
     }
 
 }
@@ -69,7 +76,7 @@ export interface Movie {
     Response: string;
 }
 
-export interface Search {
+export interface Title {
     Title: string;
     Year: string;
     imdbID: string;

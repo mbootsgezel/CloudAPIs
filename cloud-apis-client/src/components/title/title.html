@@ -1,0 +1,14 @@
+<ion-card *ngIf='title'>
+    <ion-item class="title-header">
+        <ion-row>
+            <ion-col (click)="openDetailedTitle()">
+                <h1>{{ title.Title }}</h1>
+                <p>{{ title.Year }}</p>
+                <h2>{{ title.Type | titlecase }}</h2>
+            </ion-col>
+        </ion-row>
+    </ion-item>
+    <ion-item class="title-poster">
+        <img src='{{ title.Poster }}' />
+    </ion-item>
+</ion-card>
