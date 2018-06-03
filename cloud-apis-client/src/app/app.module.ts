@@ -12,6 +12,7 @@ import { TitleComponent } from '../components/title/title';
 import { GamesServiceProvider } from '../providers/games-service/games-service';
 import { AuthenticationServiceProvider } from '../providers/authentication-service/authentication-service';
 import { CallbackComponent } from '../components/callback/callback';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,7 @@ import { CallbackComponent } from '../components/callback/callback';
     imports: [
         BrowserModule,
         HttpClientModule,
+        HttpModule,
         IonicModule.forRoot(MyApp)
     ],
     bootstrap: [IonicApp],

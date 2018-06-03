@@ -22,9 +22,24 @@ export class ApiPage {
     constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthenticationServiceProvider) {
     }
 
+    ionViewWillEnter(){
+        if(!this.auth.isAuthenticated()){
+            this.auth.login();
+        }
+    }
     ionViewDidLoad() {
         // this.loadProfile();
-        this.auth.login();
+
+
+    }
+
+    goBackToHomePage() {
+        this.navCtrl.pop();
+    }
+
+    logout() {
+        this.auth.logout();
+        this.navCtrl.pop();
     }
 
 }

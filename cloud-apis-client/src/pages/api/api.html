@@ -6,9 +6,11 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>API Page</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button float-left outline (click)="goBackToHomePage()">Back to Home</button>
+        <ion-title>API Page</ion-title>
+        <button ion-button float-right outline (click)="logout()">Logout</button>
+    </ion-navbar>
 
 </ion-header>
 

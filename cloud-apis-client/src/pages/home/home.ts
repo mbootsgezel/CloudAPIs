@@ -4,6 +4,8 @@ import { OmdbServiceProvider, Movie, Title } from '../../providers/omdb-service/
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MoviePage } from '../movie/movie';
 import { GamesServiceProvider } from '../../providers/games-service/games-service';
+import { Http } from '@angular/http';
+import { AuthenticationServiceProvider } from '../../providers/authentication-service/authentication-service';
 
 @Component({
     selector: 'page-home',
@@ -28,7 +30,7 @@ export class HomePage {
     private typeSelect: string = "any";
     private nothingFound = false;
 
-    constructor(public navCtrl: NavController, private omdb: OmdbServiceProvider, private formBuilder: FormBuilder, private games: GamesServiceProvider) {
+    constructor(public navCtrl: NavController, private omdb: OmdbServiceProvider, private formBuilder: FormBuilder, private games: GamesServiceProvider, private auth: AuthenticationServiceProvider) {
         this.search = this.formBuilder.group({
             titleNameOrId: [''],
             type: ['']
@@ -38,6 +40,15 @@ export class HomePage {
         //         console.log(element);
         //     });
         // })
+
+    }
+
+    ionViewDidLoad() {
+        if (document.URL.includes('access_token')) {
+            this.auth.setSessionManually();
+            console.log(localStorage.getItem('id_token'));
+            this.navCtrl.push('api-page');
+        }
     }
 
     searchTitle() {
@@ -59,7 +70,7 @@ export class HomePage {
                 this.resultSize = parseInt(data.totalResults);
 
                 let results = document.getElementById('resultsFound');
-                results.innerHTML = this.resultSize + " total results";  
+                results.innerHTML = this.resultSize + " total results";
 
                 this.backDisabled = this.page <= 1 ? true : false;
                 this.nextDisabled = this.page * 10 > this.resultSize ? true : false;
