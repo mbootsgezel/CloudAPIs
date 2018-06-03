@@ -17,8 +17,12 @@ ion-navbar {
       color: #CACBD5;
 }
 
-.toolbar-content {
+ion-title div {
     display: inline-flex;
+}
+
+.toolbar-content {
+    display: inline;
 }
 
 .item {

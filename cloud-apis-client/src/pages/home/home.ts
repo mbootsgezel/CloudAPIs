@@ -35,19 +35,11 @@ export class HomePage {
             titleNameOrId: [''],
             type: ['']
         })
-        // games.getGamesList().subscribe(data => {
-        //     data.forEach(element => {
-        //         console.log(element);
-        //     });
-        // })
-
     }
 
-    ionViewDidLoad() {
+    ionViewWillLoad() {
         if (document.URL.includes('access_token')) {
             this.auth.setSessionManually();
-            console.log(localStorage.getItem('id_token'));
-            this.navCtrl.push('api-page');
         }
     }
 

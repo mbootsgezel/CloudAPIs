@@ -16,5 +16,28 @@
 
 
 <ion-content padding>
-
+    <ion-list *ngIf="gameList">
+        <ion-item *ngFor="let game of gameList">
+            <h1>Game Title: {{ game.title }}</h1>
+            <p>Published by: {{ game.publisher.publisherName }}</p>
+        </ion-item>
+        <br>
+        <ion-card padding>
+            <form [formGroup]="newGame" (ngSubmit)="addGame()">
+                <h1>Add a new game</h1>
+                <ion-item>
+                    <ion-input type="text" formControlName="title" placeholder="Game title"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Select a publisher</ion-label>
+                    <ion-select formControlName="publisher">
+                        <ion-option *ngFor="let p of publisherList" value="{{p.id}}">{{ p.publisherName }}</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <button ion-button block type="submit">Add Game</button>
+                </ion-item>
+            </form>
+        </ion-card>
+    </ion-list>
 </ion-content>

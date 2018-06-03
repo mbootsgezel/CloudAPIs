@@ -44,12 +44,20 @@ namespace cloud_apis_api
                 )
             );
 
-            services.AddMvc(config => {
+            services.AddMvc(config =>
+            {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
-            
+
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                }));
+
             services.AddCors();
         }
 
@@ -60,8 +68,11 @@ namespace cloud_apis_api
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors("MyPolicy");
             app.UseAuthentication();
             app.UseMvc();
+
+            
 
             DBInitializer.Initialize(gamesCtx);
         }

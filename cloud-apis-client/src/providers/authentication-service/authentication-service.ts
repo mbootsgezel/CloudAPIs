@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from "rxjs/Observable";
 
 import Auth0 from 'auth0-js';
 
@@ -13,20 +14,20 @@ export class AuthenticationServiceProvider {
         scope: 'openid'
     });
 
-    public id_token: string;
+    public access_token: string;
 
     constructor() {
-        this.id_token = localStorage.getItem('id_token');
-     }
+        this.access_token = localStorage.getItem('access_token');
+    }
 
     public login(): void {
         this.auth0.authorize();
     }
 
-    public setSessionManually(): void {
+    public setSessionManually() {
         let URL = document.URL;
         let queries = URL.split('#')[1].split('&');
-        
+
         localStorage.setItem('access_token', queries[0].split('=')[1]);
         localStorage.setItem('expires_at', JSON.stringify((parseInt(queries[1].split('=')[1]) * 1000) + new Date().getTime()));
         localStorage.setItem('token_type', queries[2].split('=')[1]);
@@ -34,19 +35,8 @@ export class AuthenticationServiceProvider {
         localStorage.setItem('id_token', queries[4].split('=')[1]);
 
         location.replace("http://localhost:8100/#/");
-    }
 
-    public handleAuthentication(): void {
-        this.auth0.parseHash((err, authResult) => {
-            if (authResult && authResult.accessToken && authResult.idToken) {
-                this.setSession(authResult);
-                // this.navCtrl.push('api-page')
-            } else if (err) {
-                // this.navCtrl.push('api-page')
-                console.log(err);
-                alert(`Error: ${err.error}. Check the console for further details.`);
-            }
-        });
+        this.access_token = localStorage.getItem('access_token');
     }
 
     private setSession(authResult): void {
