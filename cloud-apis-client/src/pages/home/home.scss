@@ -7,7 +7,6 @@ ion-content {
 
 ion-navbar {
       text-align: center;
-      
 }
 
 .toolbar-background {
@@ -24,4 +23,22 @@ ion-navbar {
 
 ion-card ion-item {
       background-color: #666F89;
+}
+
+ion-item {
+    width: 30%;
+    margin-left: 35%;
+}
+
+.page-numbering {
+    text-align: center;
+    line-height: 50px;
+    color: white;
+}
+
+@media (min-width: 860px) { 
+    ion-list {
+        padding-left: 25% !important;
+        padding-right: 25% !important;
+    }
 }
