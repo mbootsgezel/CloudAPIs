@@ -1,6 +1,9 @@
 {
   "name": "cloud-apis-client",
-  "app_id": "",
+  "app_id": "be.cloud-apis.api",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }
+    

@@ -3,6 +3,7 @@ import { NavController, IonicPage } from 'ionic-angular';
 import { OmdbServiceProvider, Movie, Title } from '../../providers/omdb-service/omdb-service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MoviePage } from '../movie/movie';
+import { GamesServiceProvider } from '../../providers/games-service/games-service';
 
 @Component({
     selector: 'page-home',
@@ -27,11 +28,16 @@ export class HomePage {
     private typeSelect: string = "any";
     private nothingFound = false;
 
-    constructor(public navCtrl: NavController, private omdb: OmdbServiceProvider, private formBuilder: FormBuilder) {
+    constructor(public navCtrl: NavController, private omdb: OmdbServiceProvider, private formBuilder: FormBuilder, private games: GamesServiceProvider) {
         this.search = this.formBuilder.group({
             titleNameOrId: [''],
             type: ['']
         })
+        // games.getGamesList().subscribe(data => {
+        //     data.forEach(element => {
+        //         console.log(element);
+        //     });
+        // })
     }
 
     searchTitle() {
@@ -78,5 +84,10 @@ export class HomePage {
     nextPage() {
         this.page++;
         this.switchPage();
+    }
+
+    goToApiPage() {
+        console.log("Navigating to API page");
+        this.navCtrl.push("api-page");
     }
 }
